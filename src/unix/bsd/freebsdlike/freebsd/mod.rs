@@ -3059,6 +3059,27 @@ pub const SO_TS_MONOTONIC: ::c_int = 3;
 pub const SO_TS_DEFAULT: ::c_int = SO_TS_REALTIME_MICRO;
 pub const SO_TS_CLOCK_MAX: ::c_int = SO_TS_MONOTONIC;
 
+/// pcap constants
+
+// pcap/nflog.h
+pub const NFULA_PACKET_HDR: ::c_int = 1;
+pub const NFULA_MARK: ::c_int = 2;
+pub const NFULA_TIMESTAMP: ::c_int = 3;
+pub const NFULA_IFINDEX_INDEV: ::c_int = 4;
+pub const NFULA_IFINDEX_OUTDEV: ::c_int = 5;
+pub const NFULA_IFINDEX_PHYSINDEV: ::c_int = 6;
+pub const NFULA_IFINDEX_PHYSOUTDEV: ::c_int = 7;
+pub const NFULA_HWADDR: ::c_int = 8;
+pub const NFULA_PAYLOAD: ::c_int = 9;
+pub const NFULA_PREFIX: ::c_int = 10;
+pub const NFULA_UID: ::c_int = 11;
+pub const NFULA_SEQ: ::c_int = 12;
+pub const NFULA_SEQ_GLOBAL: ::c_int = 13;
+pub const NFULA_GID: ::c_int = 14;
+pub const NFULA_HWTYPE: ::c_int = 15;
+pub const NFULA_HWHEADER: ::c_int = 16;
+pub const NFULA_HWLEN: ::c_int = 17;
+
 pub const LOCAL_CREDS: ::c_int = 2;
 pub const LOCAL_CREDS_PERSISTENT: ::c_int = 3;
 pub const LOCAL_CONNWAIT: ::c_int = 4;

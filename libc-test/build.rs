@@ -2022,6 +2022,11 @@ fn test_freebsd(target: &str) {
     // Required for making freebsd11_stat available in the headers
     cfg.define("_WANT_FREEBSD11_STAT", None);
 
+    let freebsd12 = match freebsd_ver {
+        Some(n) if n >= 12 => true,
+        _ => false,
+    };
+
     let freebsd13 = match freebsd_ver {
         Some(n) if n >= 13 => true,
         _ => false,
@@ -2071,6 +2076,7 @@ fn test_freebsd(target: &str) {
                 "netinet/sctp.h",
                 "netinet/tcp.h",
                 "netinet/udp.h",
+                [freebsd12]:"pcap/nflog.h",
                 "poll.h",
                 "pthread.h",
                 "pthread_np.h",
@@ -2302,8 +2308,30 @@ fn test_freebsd(target: &str) {
                 true
             }
 
-            // Added in in FreeBSD 13.0 (r367776 and r367287)
+            // Added in FreeBSD 13.0 (r367776 and r367287)
             "SCM_CREDS2" | "LOCAL_CREDS_PERSISTENT" if Some(13) > freebsd_ver => true,
+
+            "NFULA_PACKET_HDR"
+            | "NFULA_MARK"
+            | "NFULA_TIMESTAMP"
+            | "NFULA_IFINDEX_INDEV"
+            | "NFULA_IFINDEX_OUTDEV"
+            | "NFULA_IFINDEX_PHYSINDEV"
+            | "NFULA_IFINDEX_PHYSOUTDEV"
+            | "NFULA_HWADDR"
+            | "NFULA_PAYLOAD"
+            | "NFULA_PREFIX"
+            | "NFULA_UID"
+            | "NFULA_SEQ"
+            | "NFULA_SEQ_GLOBAL"
+            | "NFULA_GID"
+            | "NFULA_HWTYPE"
+            | "NFULA_HWHEADER"
+            | "NFULA_HWLEN"
+                if Some(12) > freebsd_ver =>
+            {
+                true
+            }
 
             // Added in FreeBSD 14
             "SPACECTL_DEALLOC" if Some(14) > freebsd_ver => true,
